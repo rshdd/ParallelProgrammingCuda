@@ -12,22 +12,25 @@ __global__ void print_global_id()
 
 int main()
 {
+    // set block & grid size
     dim3 blockSize(4, 2, 1);
     dim3 gridSize(2, 2, 1);
+
+    // create cpu & device vars
     int* c_cpu;
     int* a_cpu;
     int* b_cpu;
-
     int* c_device;
     int* a_device;
     int* b_device;
+
     const int data_count = 10000;
     const int data_size = data_count * sizeof(int);
     c_cpu = (int*)malloc(data_size);
     a_cpu = (int*)malloc(data_size);
     b_cpu = (int*)malloc(data_size);
 
-    // memory allocation
+    // memory allocation for the device
     cudaMalloc((void**)&c_device, data_size);
     cudaMalloc((void**)&a_device, data_size);
     cudaMalloc((void**)&b_device, data_size);
@@ -37,7 +40,7 @@ int main()
     cudaMemcpy(a_device, a_cpu, data_size, cudaMemcpyHostToDevice);
     cudaMemcpy(b_device, b_cpu, data_size, cudaMemcpyHostToDevice);
 
-    // launch kernel
+    // call and run the kernel
     print_global_id << <gridSize, blockSize >> > ();
 
     // transfer CPU host to GPU device
