@@ -90,13 +90,6 @@ int main() {
     initializeMatrix(h_A2, row2, col2, 1);
     initializeMatrix(h_B2, row2, col2, 2);
 
-    // Revisar que las matrices se hagan bien
-    //printMatrix(h_A, row);
-    //printMatrix(h_B, row);
-
-    //printMatrix(h_A2, row2);
-    //printMatrix(h_B2, row2);
-
     // Reservar memoria en el device
     cudaMalloc(&d_A, bytes);
     cudaMalloc(&d_B, bytes);
@@ -141,11 +134,6 @@ int main() {
     cudaMemcpy(h_C, d_C, bytes, cudaMemcpyDeviceToHost);
 
     cudaMemcpy(h_C2, d_C2, bytes, cudaMemcpyDeviceToHost);
-
-    // Revisar que las matrices se hagan bien
-    //printMatrix(h_C, row);
-
-    //printMatrix(h_C2, row2);
 
     // Liberar memoria
     free(h_A);
