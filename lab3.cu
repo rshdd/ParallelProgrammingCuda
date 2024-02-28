@@ -1,6 +1,7 @@
 ﻿#include <iostream>
-#include <cuda_runtime.h>
 #include <chrono>
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 
 #define MATRIX_SIZE 2
 #define BLOCK_SIZE 16
